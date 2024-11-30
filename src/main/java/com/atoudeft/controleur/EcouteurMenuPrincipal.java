@@ -1,6 +1,7 @@
 package com.atoudeft.controleur;
 
 import com.atoudeft.client.Client;
+import com.atoudeft.vue.PanneauConfigServeur;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +52,61 @@ public class EcouteurMenuPrincipal implements ActionListener {
                     }
                     break;
                 case "CONFIGURER":
-                    //TODO : compléter (question 1.3)
+
+                    JPanel panel = new JPanel(new GridLayout(2, 2, 10, 10));
+                    panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+                    //ajouter les textfields avec l'adresse ip et port deja initialise
+                    JLabel labelIP = new JLabel("Adresse IP:");
+                    JTextField fieldIP = new JTextField(client.getAdrServeur(), 15);
+
+                    JLabel labelPort = new JLabel("Port:");
+                    JTextField fieldPort = new JTextField("" + client.getPortServeur(), 5);
+
+                    panel.add(labelIP);
+                    panel.add(fieldIP);
+                    panel.add(labelPort);
+                    panel.add(fieldPort);
+
+                    boolean validInput = false;
+                    //tant que la valeur du port n'est pas entier afficher confirmation
+                    while(!validInput) {
+                        int result = JOptionPane.showConfirmDialog(
+                                null,
+                                panel,
+                                "Configuration serveur",
+                                JOptionPane.OK_CANCEL_OPTION,
+                                JOptionPane.PLAIN_MESSAGE
+                        );
+
+                        if (result == JOptionPane.OK_OPTION) {
+                            try {
+                            String ipAddress = fieldIP.getText();
+                            //numberformatexception est lance si le text n'est pas un int
+                            int port = Integer.parseInt(fieldPort.getText());
+
+                            //fournir donnees au client
+                            client.setAdrServeur(ipAddress);
+                            client.setPortServeur(port);
+                            System.out.println("Configuration reussie: IP = " + ipAddress + ", Port = " + port);
+                            validInput = true;
+
+                            } catch (NumberFormatException ex) {
+                                //message d'erreur pour port invalide
+                                JOptionPane.showMessageDialog(
+                                        null,
+                                        "Le port doit être un entier valide entre 1 et 65535.",
+                                        "Erreur de saisie",
+                                        JOptionPane.ERROR_MESSAGE
+                                );
+                            }
+
+                        } else {
+                            //si bouton cancel est active
+                            System.out.println("Configuration canceled.");
+                            break;
+                        }
+                    }
                     break;
                 case "QUITTER":
                     if (client.isConnecte()) {
