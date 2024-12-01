@@ -81,8 +81,20 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     break;
                 /******************* SÉLECTION DE COMPTES *******************/
                 case "EPARGNE" :
-                    arg = evenement.getArgument();
-                    JOptionPane.showMessageDialog(panneauPrincipal,"EPARGNE "+arg);
+                    //gerer en cas d'erreur
+                    //ajouter compte epargne a la JList
+                    try {
+                        arg = evenement.getArgument();
+                        JOptionPane.showMessageDialog(panneauPrincipal, "EPARGNE " + arg);
+                        panneauPrincipal.ajouterCompte(arg);
+                    }catch (Exception e){
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Erreur en creant le compte epargne",
+                                "Erreur Epargne",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                    }
                     break;
                 case "SELECT" :
                     arg = evenement.getArgument();
