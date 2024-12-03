@@ -1,6 +1,7 @@
 package com.atoudeft.controleur;
 
 import com.atoudeft.client.Client;
+import com.atoudeft.commun.net.Connexion;
 import com.atoudeft.vue.*;
 
 import javax.swing.*;
@@ -14,6 +15,8 @@ public class EcouteurOperationsCompte implements ActionListener {
     public EcouteurOperationsCompte(Client client, PanneauPrincipal panneauPrincipal) {
         this.client = client;
         this.panneauPrincipal = panneauPrincipal;
+
+
     }
 
     @Override
@@ -21,6 +24,7 @@ public class EcouteurOperationsCompte implements ActionListener {
         //gestion de l'action du bouton epragne
         Object source = e.getSource();
         String nomAction;
+
         if (source instanceof JButton) {
             nomAction = ((JButton)source).getActionCommand();
             switch (nomAction) {
@@ -44,6 +48,9 @@ public class EcouteurOperationsCompte implements ActionListener {
                     break;
 
                 case "HIST":
+                    client.envoyer("HIST ");
+
+                    client.lire();
                     panneauPrincipal.afficherHistoriqueCompte("HIST");
             }
 
