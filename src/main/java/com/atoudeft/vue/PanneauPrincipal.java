@@ -29,6 +29,8 @@ public class PanneauPrincipal  extends JPanel {
     private JDesktopPane bureau;
 
 
+
+
     public PanneauPrincipal(Client client) {
         this.client = client;
 
