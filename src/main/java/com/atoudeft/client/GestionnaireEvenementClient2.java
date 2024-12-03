@@ -98,6 +98,7 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     break;
                 case "SELECT" :
                     arg = evenement.getArgument();
+
                     JOptionPane.showMessageDialog(panneauPrincipal,"SELECT "+arg);
                     break;
 
@@ -118,6 +119,7 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     arg = evenement.getArgument();
                     JOptionPane.showMessageDialog(panneauPrincipal,"TRANSFER " + arg);
                     break;
+
                 /******************* TRAITEMENT PAR DÉFAUT *******************/
                 default:
                     System.out.println("RECU : "+evenement.getType()+" "+evenement.getArgument());

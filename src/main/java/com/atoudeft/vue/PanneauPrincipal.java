@@ -27,7 +27,13 @@ public class PanneauPrincipal  extends JPanel {
     private DefaultListModel<String> numerosComptes;
     private JList<String> jlNumerosComptes;
     private JDesktopPane bureau;
+    private JPanel panneauDetails; // Panel for operation-specific forms
+    private CardLayout cardLayout;
 
+    private PanneauDepot panneauDepot;
+    private PanneauRetrait panneauRetrait;
+    private PanneauTransfert panneauTransfert;
+    private PanneauFacture panneauFacture;
 
 
 
@@ -38,7 +44,12 @@ public class PanneauPrincipal  extends JPanel {
         panneauConnexion.setEcouteur(new EcouteurConnexion(client,panneauConnexion));
 
         panneauOperationsCompte = new PanneauOperationsCompte();
-        panneauOperationsCompte.setEcouteur(new EcouteurOperationsCompte(client));
+        panneauOperationsCompte.setEcouteur(new EcouteurOperationsCompte(client, this));
+
+        panneauDepot = new PanneauDepot(client);
+        panneauRetrait = new PanneauRetrait(client);
+        panneauTransfert = new PanneauTransfert(client);
+        panneauFacture = new PanneauFacture(client);
 
         panneauCompteClient = new JPanel();
 
@@ -53,9 +64,19 @@ public class PanneauPrincipal  extends JPanel {
         jlNumerosComptes.setBorder(BorderFactory.createTitledBorder("Comptes bancaires"));
         jlNumerosComptes.setPreferredSize(new Dimension(250,500));
 
+        panneauDetails = new JPanel();
+        cardLayout = new CardLayout();
+        panneauDetails.setLayout(cardLayout);
+        panneauDetails.add(new JLabel("Sélectionnez une opération"), "DEFAULT");
+        panneauDetails.add(panneauDepot, "DEPOT");
+        panneauDetails.add(panneauRetrait, "RETRAIT");
+        panneauDetails.add(panneauTransfert, "TRANSFER");
+        panneauDetails.add(panneauFacture, "FACTURE");
 
         panneauCompteClient.add(panneauOperationsCompte, BorderLayout.NORTH);
         panneauCompteClient.add(jlNumerosComptes, BorderLayout.WEST);
+        panneauCompteClient.add(panneauDetails, BorderLayout.CENTER);
+
         //Enregistrement de l'écouteur de souris:
         jlNumerosComptes.addMouseListener(new EcouteurListeComptes(client));
 
@@ -63,6 +84,7 @@ public class PanneauPrincipal  extends JPanel {
 
         this.add(panneauConnexion, BorderLayout.NORTH);
         this.add(panneauCompteClient, BorderLayout.CENTER);
+
         panneauCompteClient.setVisible(false);
     }
 
@@ -72,6 +94,9 @@ public class PanneauPrincipal  extends JPanel {
     public void vider() {
         this.numerosComptes.clear();
         this.bureau.removeAll();
+    }
+    public void afficherPanneauOperation(String nomPanneau) {
+        cardLayout.show(panneauDetails, nomPanneau);
     }
     public void cacherPanneauConnexion() {
         panneauConnexion.effacer();

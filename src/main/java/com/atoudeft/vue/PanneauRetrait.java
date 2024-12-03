@@ -1,29 +1,51 @@
 
         package com.atoudeft.vue;
 
+import com.atoudeft.client.Client;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class PanneauRetrait extends JPanel {
-    private JTextField txtMontant;
-    private JButton btnValider;
+        public class PanneauRetrait extends JPanel {
+            private JTextField txtMontant;
+            private JButton btnValider;
+            private Client client;
 
-    public PanneauRetrait() {
-        this.setLayout(new GridLayout(2, 2));
-        this.add(new JLabel("Montant : "));
-        txtMontant = new JTextField();
-        this.add(txtMontant);
-        btnValider = new JButton("Valider");
-        btnValider.setActionCommand("VALIDER_RETRAIT");
-        this.add(btnValider);
-    }
+            public PanneauRetrait(Client client) {
+                this.client = client;
 
-    public String getMontant() {
-        return txtMontant.getText();
-    }
+                this.setLayout(new GridLayout(2, 2));
 
-    public void setEcouteur(ActionListener ecouteur) {
-        btnValider.addActionListener(ecouteur);
-    }
-}
+                // Input for amount
+                this.add(new JLabel("Montant : "));
+                txtMontant = new JTextField();
+                this.add(txtMontant);
+
+                // Validation button
+                btnValider = new JButton("Valider");
+                btnValider.setActionCommand("VALIDER_DEPOT");
+                this.add(new JLabel()); // Spacer
+                this.add(btnValider);
+
+                // Action listener for the button
+                btnValider.addActionListener(e -> validerRetrait());
+            }
+
+            private void validerRetrait() {
+                // Fetch the entered amount
+                String montant = txtMontant.getText();
+
+                // Validate input
+                if (montant.isEmpty() || !montant.matches("\\d+(\\.\\d{1,2})?")) {
+                    JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // Send command to the server
+                client.envoyer("RETRAIT " + montant);
+
+                // Clear the input field after sending
+                txtMontant.setText("");
+            }
+        }

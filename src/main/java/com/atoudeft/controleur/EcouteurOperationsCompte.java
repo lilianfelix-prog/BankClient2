@@ -9,23 +9,12 @@ import java.awt.event.ActionListener;
 
 public class EcouteurOperationsCompte implements ActionListener {
     private Client client;
-    private PanneauDepot panneauDepot;
-    private PanneauRetrait panneauRetrait;
-    private PanneauFacture panneauFacture;
-    private PanneauTransfert panneauTransfert;
+    private PanneauPrincipal panneauPrincipal;
 
-
-
-
-    public EcouteurOperationsCompte(Client client) {
+    public EcouteurOperationsCompte(Client client, PanneauPrincipal panneauPrincipal) {
         this.client = client;
-        this.panneauDepot = panneauDepot;
-        this.panneauRetrait = panneauRetrait;
-        this.panneauFacture = panneauFacture;
-        this.panneauTransfert = panneauTransfert;
-
+        this.panneauPrincipal = panneauPrincipal;
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -38,24 +27,25 @@ public class EcouteurOperationsCompte implements ActionListener {
                 case "EPARGNE":
                     client.envoyer("EPARGNE ");
                     break;
-
                 case "DEPOT":
-                    client.envoyer("DEPOT "+ panneauDepot.getMontant());
+                    panneauPrincipal.afficherPanneauOperation("DEPOT");
+                    break;
 
                 case "RETRAIT":
-                    client.envoyer("RETRAIT "+ panneauRetrait.getMontant() );
+                    panneauPrincipal.afficherPanneauOperation("RETRAIT");
                     break;
 
                 case "TRANSFERT":
-                    client.envoyer("TRANSFERT "+ panneauTransfert.getMontant()+" "+ panneauTransfert.getNomCompteDestinataire());
+                    panneauPrincipal.afficherPanneauOperation("TRANSFERT");
                     break;
 
                 case "FACTURE":
-                    client.envoyer("FACTURE "+ panneauFacture.getMontant()+" "+  panneauFacture.getNumeroDeFacture()+ " "+ panneauFacture.getDescription());
+                    panneauPrincipal.afficherPanneauOperation("FACTURE");
                     break;
 
+                case "HIST":
+                    panneauPrincipal.afficherHistoriqueCompte("HIST");
             }
-
 
         }
     }

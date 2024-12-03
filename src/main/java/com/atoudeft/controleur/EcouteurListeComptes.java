@@ -21,8 +21,21 @@ public class EcouteurListeComptes extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent evt) {
+        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
+            evt.consume();
+
+            Object source = evt.getSource();
+            if (source instanceof JList) {
+                JList<?> list = (JList<?>) source;
+                int selectedIndex = list.getSelectedIndex(); // Get the selected index
+                if (selectedIndex != -1) { // Check if an item is selected
+                    Object selectedValue = list.getSelectedValue(); // Get the selected value
+                    String nomAction = selectedValue.toString(); // Convert it to a string
+                    client.lire();
 
 
-
+                }
+            }
+        }
     }
 }
