@@ -95,4 +95,30 @@ public class PanneauPrincipal  extends JPanel {
     public void ajouterCompte(String str) {
         numerosComptes.addElement(str);
     }
+
+    public void afficherHistoriqueCompte(String historique) {
+
+        JTextArea textArea = new JTextArea(historique);
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+
+
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setPreferredSize(new Dimension(400, 300));
+
+
+        JOptionPane.showMessageDialog(
+                this,
+                scrollPane,
+                "Historique du compte",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+
+
+
 }
+
+
+
