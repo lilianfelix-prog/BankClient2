@@ -14,9 +14,9 @@ public class PanneauFacture extends JPanel {
     public PanneauFacture(Client client) {
         this.client = client;
 
-        this.setLayout(new GridLayout(3, 2));
+        this.setLayout(new GridLayout(4, 2));
 
-        // Input for amount
+
         this.add(new JLabel("Montant : "));
         txtMontant = new JTextField();
         this.add(txtMontant);
@@ -24,7 +24,7 @@ public class PanneauFacture extends JPanel {
         this.add(new JLabel("numero de facture : "));
         txtNumFact = new JTextField();
         this.add(txtNumFact);
-        // Input for destination account
+
         this.add(new JLabel("decriptions : "));
         txtDescription = new JTextField();
         this.add(txtDescription);
@@ -33,7 +33,7 @@ public class PanneauFacture extends JPanel {
 
         btnValider = new JButton("Valider");
         btnValider.setActionCommand("VALIDER_FACTURE");
-        this.add(new JLabel()); // Spacer
+        this.add(new JLabel());
         this.add(btnValider);
 
 
@@ -47,7 +47,7 @@ public class PanneauFacture extends JPanel {
         String numFact = txtNumFact.getText();
 
 
-        if (montant.isEmpty() || !montant.matches("\\d+(\\.\\d{1,2})?")) {
+        if (montant.isEmpty() ) {
             JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
         }

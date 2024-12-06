@@ -33,7 +33,7 @@ public class PanneauPrincipal  extends JPanel {
 
     private PanneauDepot panneauDepot;
     private PanneauRetrait panneauRetrait;
-    private PanneauTransfert panneauTransfert;
+    private PanneauTransfer panneauTransfer;
     private PanneauFacture panneauFacture;
 
 
@@ -51,7 +51,7 @@ public class PanneauPrincipal  extends JPanel {
 
         panneauDepot = new PanneauDepot(client);
         panneauRetrait = new PanneauRetrait(client);
-        panneauTransfert = new PanneauTransfert(client);
+        panneauTransfer = new PanneauTransfer(client);
         panneauFacture = new PanneauFacture(client);
 
         panneauCompteClient = new JPanel();
@@ -73,7 +73,7 @@ public class PanneauPrincipal  extends JPanel {
         panneauDetails.add(new JLabel("Sélectionnez une opération"), "DEFAULT");
         panneauDetails.add(panneauDepot, "DEPOT");
         panneauDetails.add(panneauRetrait, "RETRAIT");
-        panneauDetails.add(panneauTransfert, "TRANSFER");
+        panneauDetails.add(panneauTransfer, "TRANSFER");
         panneauDetails.add(panneauFacture, "FACTURE");
 
         panneauCompteClient.add(panneauOperationsCompte, BorderLayout.NORTH);

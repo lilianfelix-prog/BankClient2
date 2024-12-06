@@ -40,8 +40,8 @@ public class EcouteurOperationsCompte implements ActionListener {
                     panneauPrincipal.afficherPanneauOperation("RETRAIT");
                     break;
 
-                case "TRANSFERT":
-                    panneauPrincipal.afficherPanneauOperation("TRANSFERT");
+                case "TRANSFER":
+                    panneauPrincipal.afficherPanneauOperation("TRANSFER");
                     break;
 
                 case "FACTURE":
