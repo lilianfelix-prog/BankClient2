@@ -30,23 +30,23 @@ public class PanneauFacture extends JPanel {
         this.add(txtDescription);
 
 
-        // Validation button
+
         btnValider = new JButton("Valider");
         btnValider.setActionCommand("VALIDER_FACTURE");
         this.add(new JLabel()); // Spacer
         this.add(btnValider);
 
-        // Action listener for the button
+
         btnValider.addActionListener(e -> validerFacture());
     }
 
     private void validerFacture() {
-        // Fetch inputs
+
         String montant = txtMontant.getText();
         String description = txtDescription.getText();
         String numFact = txtNumFact.getText();
 
-        // Validate inputs
+
         if (montant.isEmpty() || !montant.matches("\\d+(\\.\\d{1,2})?")) {
             JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
@@ -61,10 +61,10 @@ public class PanneauFacture extends JPanel {
             return;
         }
 
-        // Send command to the server
+
         client.envoyer("FACTURE " + montant + " " + numFact + " " + description);
 
-        // Clear inputs after sending
+
         txtMontant.setText("");
         txtDescription.setText("");
         txtNumFact.setText("");

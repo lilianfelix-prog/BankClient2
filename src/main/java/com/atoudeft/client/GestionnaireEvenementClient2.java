@@ -41,12 +41,12 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     client.deconnecter(); //On ferme la connexion
                     break;
                 /******************* CREATION et CONNEXION *******************/
-//                case "HIST": //Le serveur a renvoyé
-//                    panneauPrincipal.setVisible(true);
-//                    JOptionPane.showMessageDialog(null,"Panneau visible");
-//                    cnx.envoyer("LIST");
-//                    arg = evenement.getArgument();
-//                    break;
+                case "HIST": //Le serveur a renvoyé
+
+                    arg = evenement.getArgument();
+                    panneauPrincipal.afficherHistoriqueCompte(arg); //affiche le scrollPane avec l'historique envoye par le serveur
+                    break;
+
                 case "OK":
                     panneauPrincipal.setVisible(true);
                     fenetre = (MainFrame)panneauPrincipal.getTopLevelAncestor();
@@ -86,7 +86,7 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     try {
                         arg = evenement.getArgument();
                         JOptionPane.showMessageDialog(panneauPrincipal, "EPARGNE " + arg);
-                        panneauPrincipal.ajouterCompte(arg);
+                        panneauPrincipal.ajouterCompte(arg + "[EPARGNE]");
                     }catch (Exception e){
                         JOptionPane.showMessageDialog(
                                 null,
@@ -98,8 +98,10 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     break;
                 case "SELECT" :
                     arg = evenement.getArgument();
-
+                    String[] solde = arg.split(" ");
+                    panneauPrincipal.setSolde(solde[2]);
                     JOptionPane.showMessageDialog(panneauPrincipal,"SELECT "+arg);
+
                     break;
 
                 /******************* OPÉRATIONS BANCAIRES *******************/

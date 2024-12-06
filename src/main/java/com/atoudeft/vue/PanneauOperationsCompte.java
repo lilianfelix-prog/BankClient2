@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 
 public class PanneauOperationsCompte extends JPanel {
     private JButton bEpargne, bDepot, bRetrait, bTransfert, bFacture, bHistorique, bOperation;
+
+
+
     private JLabel lblSolde;
 
     public PanneauOperationsCompte() {
@@ -52,8 +55,10 @@ public class PanneauOperationsCompte extends JPanel {
         bHistorique.addActionListener(ecouteur);
 
 
+    }
 
-
+    public JLabel getLblSolde() {
+        return lblSolde;
     }
 
 }

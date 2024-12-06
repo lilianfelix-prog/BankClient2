@@ -173,4 +173,6 @@ public class Client extends Observable implements Lecteur {
     public void envoyer(String s) {
         this.connexion.envoyer(s);
     }
+
 }
+

@@ -20,6 +20,7 @@ import java.util.Vector;
  */
 public class PanneauPrincipal  extends JPanel {
     private Client client;
+
     private PanneauConnexion panneauConnexion;
     private JPanel panneauCompteClient;
     private PanneauOperationsCompte panneauOperationsCompte;
@@ -45,6 +46,8 @@ public class PanneauPrincipal  extends JPanel {
 
         panneauOperationsCompte = new PanneauOperationsCompte();
         panneauOperationsCompte.setEcouteur(new EcouteurOperationsCompte(client, this));
+        //panneauOperationsCompte.setSolde();
+
 
         panneauDepot = new PanneauDepot(client);
         panneauRetrait = new PanneauRetrait(client);
@@ -139,6 +142,10 @@ public class PanneauPrincipal  extends JPanel {
                 "Historique du compte",
                 JOptionPane.INFORMATION_MESSAGE
         );
+    }
+
+    public void setSolde(String solde){
+        panneauOperationsCompte.getLblSolde().setText("Solde: " + solde);
     }
 
 

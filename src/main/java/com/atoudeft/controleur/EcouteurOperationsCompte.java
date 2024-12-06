@@ -24,6 +24,7 @@ public class EcouteurOperationsCompte implements ActionListener {
         //gestion de l'action du bouton epragne
         Object source = e.getSource();
         String nomAction;
+        String arg;
 
         if (source instanceof JButton) {
             nomAction = ((JButton)source).getActionCommand();
@@ -48,10 +49,8 @@ public class EcouteurOperationsCompte implements ActionListener {
                     break;
 
                 case "HIST":
+                    //envoyer le command HIST au serveur quand le boutton historique est appuye
                     client.envoyer("HIST ");
-
-                    client.lire();
-                    panneauPrincipal.afficherHistoriqueCompte("HIST");
             }
 
         }

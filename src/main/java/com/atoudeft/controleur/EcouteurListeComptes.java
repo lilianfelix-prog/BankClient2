@@ -27,10 +27,10 @@ public class EcouteurListeComptes extends MouseAdapter {
             Object source = evt.getSource();
             if (source instanceof JList) {
                 JList<String> list = (JList<String>) source;
-                int selectedIndex = list.getSelectedIndex(); // Get the selected index
-                if (selectedIndex != -1) { // Check if an item is selected
-                    Object selectedValue = list.getSelectedValue(); // Get the selected value
-                    String nomAction = selectedValue.toString(); // Convert it to a string
+                int selectedIndex = list.getSelectedIndex();
+                if (selectedIndex != -1) {
+                    Object selectedValue = list.getSelectedValue();
+                    String nomAction = selectedValue.toString();
                     int index1 = nomAction.indexOf('[')+1;
                     int index2 = nomAction.indexOf(']');
                     String type = nomAction.substring(index1, index2);

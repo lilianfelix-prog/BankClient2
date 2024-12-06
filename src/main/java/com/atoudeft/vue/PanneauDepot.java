@@ -37,7 +37,7 @@ public class PanneauDepot extends JPanel {
         String montant = txtMontant.getText();
 
         // Validate input
-        if (montant.isEmpty() || !montant.matches("\\d+(\\.\\d{1,2})?")) {
+        if (montant.isEmpty() ) {
             JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
         }
