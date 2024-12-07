@@ -12,6 +12,7 @@ public class EcouteurOperationsCompte implements ActionListener {
     private Client client;
     private PanneauPrincipal panneauPrincipal;
 
+
     public EcouteurOperationsCompte(Client client, PanneauPrincipal panneauPrincipal) {
         this.client = client;
         this.panneauPrincipal = panneauPrincipal;
@@ -26,6 +27,8 @@ public class EcouteurOperationsCompte implements ActionListener {
         String nomAction;
         String arg;
 
+        // récupère la commande et éxécute une action du bouton
+        // selon le choix de l'utilisateur
         if (source instanceof JButton) {
             nomAction = ((JButton)source).getActionCommand();
             switch (nomAction) {

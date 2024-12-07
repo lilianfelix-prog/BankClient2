@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+        //Panneau qui permet de gérer La configuration RETRAIT
         public class PanneauRetrait extends JPanel {
             private JTextField txtMontant;
             private JButton btnValider;

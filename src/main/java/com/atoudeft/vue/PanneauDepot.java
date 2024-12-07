@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+//panneau qui permet de gérer DEPOT
 public class PanneauDepot extends JPanel {
     private JTextField txtMontant;
     private JButton btnValider;

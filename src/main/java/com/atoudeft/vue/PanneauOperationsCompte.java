@@ -4,13 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// Panneau qui gère les boutons
+
 public class PanneauOperationsCompte extends JPanel {
+
+    // Création des boutons pour le panneau
     private JButton bEpargne, bDepot, bRetrait, bTransfert, bFacture, bHistorique, bOperation;
 
 
 
     private JLabel lblSolde;
 
+    // Initialise les boutons les labels pour les opérations bancaires
     public PanneauOperationsCompte() {
         bEpargne = new JButton("Créer compte épargne");
         bDepot = new JButton("Déposer");
@@ -24,7 +29,7 @@ public class PanneauOperationsCompte extends JPanel {
 
 
 
-
+        // Assigne les commandes d'action spécifique pour chaque bouton
         bEpargne.setActionCommand("EPARGNE");
         bDepot.setActionCommand("DEPOT");
         bRetrait.setActionCommand("RETRAIT");
@@ -46,6 +51,8 @@ public class PanneauOperationsCompte extends JPanel {
 
 
     }
+
+    // Ajoute un écouteur d'événement pour chaque bouton
     public void setEcouteur(ActionListener ecouteur) {
         bEpargne.addActionListener(ecouteur);
         bDepot.addActionListener(ecouteur);
@@ -56,7 +63,7 @@ public class PanneauOperationsCompte extends JPanel {
 
 
     }
-
+    // huh ?
     public JLabel getLblSolde() {
         return lblSolde;
     }

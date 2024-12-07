@@ -21,9 +21,15 @@ public class EcouteurListeComptes extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent evt) {
+
+        //Vérifie si l'événement est un double-clic
+        //et si l'événement n'est pas consummer
         if (evt.getClickCount() == 2 && !evt.isConsumed()) {
             evt.consume();
 
+
+            // Vérifie si Lévénement vient d'une Jlist pour ensuite récupérer
+            // l'élément selectionné et puis envoyer une ccommande SELECT au serveur
             Object source = evt.getSource();
             if (source instanceof JList) {
                 JList<String> list = (JList<String>) source;

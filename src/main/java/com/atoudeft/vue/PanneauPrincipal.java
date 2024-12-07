@@ -124,6 +124,7 @@ public class PanneauPrincipal  extends JPanel {
         numerosComptes.addElement(str);
     }
 
+    // cree une fenetre et affiche l'histoique des transactions dans un boîte de message
     public void afficherHistoriqueCompte(String historique) {
 
         JTextArea textArea = new JTextArea(historique);

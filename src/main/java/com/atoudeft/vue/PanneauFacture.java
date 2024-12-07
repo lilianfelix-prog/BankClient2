@@ -6,6 +6,7 @@ import com.atoudeft.client.Client;
 import javax.swing.*;
 import java.awt.*;
 
+//Panneau qui permet de gérer la cofiguration FACTURE
 public class PanneauFacture extends JPanel {
     private JTextField txtMontant, txtDescription, txtNumFact;
     private JButton btnValider;

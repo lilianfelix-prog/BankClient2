@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+// Panneau qui permet de gérer la configuration TRANSFÉRER
+
 public class PanneauTransfer extends JPanel {
     private JTextField txtMontant, txtCompteDestinataire;
     private JButton btnValider;
@@ -35,6 +37,8 @@ public class PanneauTransfer extends JPanel {
 
         btnValider.addActionListener(e -> validerTransfert());
     }
+
+
 
     private void validerTransfert() {
 
