@@ -86,7 +86,11 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     try {
                         arg = evenement.getArgument();
                         JOptionPane.showMessageDialog(panneauPrincipal, "EPARGNE " + arg);
-                        panneauPrincipal.ajouterCompte(arg + "[EPARGNE]");
+                        if(!arg.contains("NO")) {
+                            panneauPrincipal.ajouterCompte(arg + "[EPARGNE]");  // ajoute [EPARGNE] pour la command select seulement la commande est accepte
+                        }else{
+                            panneauPrincipal.ajouterCompte(arg);
+                        }
                     }catch (Exception e){
                         JOptionPane.showMessageDialog(
                                 null,
@@ -97,6 +101,7 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     }
                     break;
                 case "SELECT" :
+                    //Affiche le solde en fonction de se qui est retoune par le serveur
                     arg = evenement.getArgument();
                     String[] solde = arg.split(" ");
                     panneauPrincipal.setSolde(solde[2]);

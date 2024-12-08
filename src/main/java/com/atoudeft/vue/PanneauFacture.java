@@ -40,7 +40,8 @@ public class PanneauFacture extends JPanel {
         this.add(new JLabel());
         this.add(btnValider);
 
-        // Ajoute un écouteur d'action au bouton Valider
+        // ajouter un event listener au boutton valider
+        // methode validerDepot est executer quand un event e est detecte (fonction lambda)
         btnValider.addActionListener(e -> validerFacture());
     }
 
@@ -52,8 +53,8 @@ public class PanneauFacture extends JPanel {
         String description = txtDescription.getText();
         String numFact = txtNumFact.getText();
 
-        // Affiche un erreur si le montant est vide
-        if (montant.isEmpty() ) {
+        // Vérifie si le montant est bien saisie et c'est un chiffre
+        if (montant.isEmpty() || !montant.matches("\\d+(\\.\\d{1,2})?")) {
             JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
         }

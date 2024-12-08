@@ -47,7 +47,7 @@ public class PanneauPrincipal  extends JPanel {
 
         panneauOperationsCompte = new PanneauOperationsCompte();
         panneauOperationsCompte.setEcouteur(new EcouteurOperationsCompte(client, this));
-        //panneauOperationsCompte.setSolde();
+
 
         // Initialise les panneaux d'opérations spécifiques Depot, retrait, transfert et facture
         panneauDepot = new PanneauDepot(client);
@@ -64,13 +64,13 @@ public class PanneauPrincipal  extends JPanel {
 
         numerosComptes = new DefaultListModel<>();
 
-        // Initialise le modèle de lsite pour les numéros de comptes
+
         jlNumerosComptes = new JList<>(numerosComptes);
         jlNumerosComptes.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
         jlNumerosComptes.setBorder(BorderFactory.createTitledBorder("Comptes bancaires"));
         jlNumerosComptes.setPreferredSize(new Dimension(250,500));
 
-        // Affiche les formulaires d'opération spécifiques selon
+
         panneauDetails = new JPanel();
         cardLayout = new CardLayout();
         panneauDetails.setLayout(cardLayout);
@@ -81,12 +81,12 @@ public class PanneauPrincipal  extends JPanel {
         panneauDetails.add(panneauFacture, "FACTURE");
 
 
-        // Dont know what is this
+
         panneauCompteClient.add(panneauOperationsCompte, BorderLayout.NORTH);
         panneauCompteClient.add(jlNumerosComptes, BorderLayout.WEST);
         panneauCompteClient.add(panneauDetails, BorderLayout.CENTER);
 
-        //Enregistrement de l'écouteur de souris:
+
         jlNumerosComptes.addMouseListener(new EcouteurListeComptes(client));
 
         this.setLayout(new BorderLayout());

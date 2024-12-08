@@ -23,7 +23,7 @@ public class PanneauTransfer extends JPanel {
         txtMontant = new JTextField();
         this.add(txtMontant);
 
-        // Ajoute un JLabel et un cahmp de texte pour saisir le compte destinataire
+        // Ajoute un JLabel et un champ de texte pour saisir le compte destinataire
         this.add(new JLabel("Compte destinataire : "));
         txtCompteDestinataire = new JTextField();
         this.add(txtCompteDestinataire);
@@ -46,8 +46,8 @@ public class PanneauTransfer extends JPanel {
         String montant = txtMontant.getText();
         String compteDestinataire = txtCompteDestinataire.getText();
 
-        // Vérifie l'entrée du montant
-        if (montant.isEmpty() ) {
+        // Vérifie si le montant est bien saisie et c'est un chiffre
+        if (montant.isEmpty() || !montant.matches("\\d+(\\.\\d{1,2})?")) {
             JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -65,7 +65,5 @@ public class PanneauTransfer extends JPanel {
         txtMontant.setText("");
         txtCompteDestinataire.setText("");
 
-        // Affiche le message si c'est un succès
-        JOptionPane.showMessageDialog(this, "Transfert envoyé avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
     }
 }

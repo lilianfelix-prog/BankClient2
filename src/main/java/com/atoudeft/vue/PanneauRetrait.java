@@ -27,10 +27,11 @@ import java.awt.event.ActionListener;
                 // cree un bouton "Valider"
                 btnValider = new JButton("Valider");
                 btnValider.setActionCommand("VALIDER_DEPOT");
-                this.add(new JLabel()); // Spacer
+                this.add(new JLabel()); // espace
                 this.add(btnValider);
 
-                // Ajoute l'écouteur d'action pour le bouton
+                // ajouter un event listener au boutton valider
+                // methode validerDepot est executer quand un event e est detecte (fonction lambda)
                 btnValider.addActionListener(e -> validerRetrait());
             }
 
@@ -39,7 +40,7 @@ import java.awt.event.ActionListener;
                 // Récupère le montant saisie
                 String montant = txtMontant.getText();
 
-                // Vérifie si le montant est bien saisie ou pas
+                // Vérifie si le montant est bien saisie et c'est un chiffre
                 if (montant.isEmpty() || !montant.matches("\\d+(\\.\\d{1,2})?")) {
                     JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
                     return;

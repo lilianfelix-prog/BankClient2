@@ -28,23 +28,21 @@ public class PanneauDepot extends JPanel {
         // Crée et définit la commande d'action le bouton Valider
         btnValider = new JButton("Valider");
         btnValider.setActionCommand("VALIDER_DEPOT");
-        this.add(new JLabel()); // Spacer
-        this.add(btnValider);
+        this.add(new JLabel()); // mettre un espace
+        this.add(btnValider); // ajouter le boutton au panneau
 
-        // Ajoute un écouteur d'action au bouton Valider
+        // ajouter un event listener au boutton valider
+        // methode validerDepot est executer quand un event e est detecte (fonction lambda)
         btnValider.addActionListener(e -> validerDepot());
     }
 
-    // Vérifie si le montant saisie
     private void validerDepot() {
 
         // Récupère le montant saisi dans le champ de texte
         String montant = txtMontant.getText();
 
-        // le montant n'est pas vide
-        if (montant.isEmpty() ) {
-
-            //Affiche un message d'erreur si le montant est vide
+        // Vérifie si le montant est bien saisie et c'est un chiffre
+        if (montant.isEmpty() || !montant.matches("\\d+(\\.\\d{1,2})?")) {
             JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -54,6 +52,6 @@ public class PanneauDepot extends JPanel {
 
         // Réinitilaise le champ de texte après l'envoi
         txtMontant.setText("");
-        JOptionPane.showMessageDialog(this, "Depot envoyé avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+
     }
 }
