@@ -39,7 +39,7 @@ public class PanneauOperationsCompte extends JPanel {
 
 
 
-        //à compléter :
+        // Configure le layout et ajoute les composants pour à l"interface graphique
         this.setLayout(new FlowLayout(FlowLayout.RIGHT));
         this.add(lblSolde);
         this.add(bEpargne);
@@ -63,7 +63,7 @@ public class PanneauOperationsCompte extends JPanel {
 
 
     }
-    // huh ?
+    // c'est juste pour aller chercher le JLabel du solde pour l'afficher
     public JLabel getLblSolde() {
         return lblSolde;
     }

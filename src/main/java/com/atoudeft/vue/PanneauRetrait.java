@@ -13,40 +13,42 @@ import java.awt.event.ActionListener;
             private JButton btnValider;
             private Client client;
 
+
             public PanneauRetrait(Client client) {
                 this.client = client;
 
                 this.setLayout(new GridLayout(2, 2));
 
-                // Input for amount
+                // Ajoute un label et un champ de texte pour saisir le montant
                 this.add(new JLabel("Montant : "));
                 txtMontant = new JTextField();
                 this.add(txtMontant);
 
-                // Validation button
+                // cree un bouton "Valider"
                 btnValider = new JButton("Valider");
                 btnValider.setActionCommand("VALIDER_DEPOT");
                 this.add(new JLabel()); // Spacer
                 this.add(btnValider);
 
-                // Action listener for the button
+                // Ajoute l'écouteur d'action pour le bouton
                 btnValider.addActionListener(e -> validerRetrait());
             }
 
             private void validerRetrait() {
-                // Fetch the entered amount
+
+                // Récupère le montant saisie
                 String montant = txtMontant.getText();
 
-                // Validate input
+                // Vérifie si le montant est bien saisie ou pas
                 if (montant.isEmpty() || !montant.matches("\\d+(\\.\\d{1,2})?")) {
                     JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
-                // Send command to the server
+                // Envoie la commande de retrait au serveur
                 client.envoyer("RETRAIT " + montant);
 
-                // Clear the input field after sending
+                // Efface le champ de texte après l'envoi
                 txtMontant.setText("");
             }
         }

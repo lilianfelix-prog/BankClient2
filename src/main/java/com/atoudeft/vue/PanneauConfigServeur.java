@@ -24,6 +24,7 @@ public class PanneauConfigServeur extends JPanel {
         this.txtAdrServeur.setText(adr);
         this.txtNumPort.setText("" + port);
     }
+
     public String getAdresseServeur() {
         return txtAdrServeur.getText();
     }

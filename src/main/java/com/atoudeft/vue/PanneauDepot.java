@@ -14,39 +14,45 @@ public class PanneauDepot extends JPanel {
     private Client client;
 
     public PanneauDepot(Client client) {
+        // Initialise l'objet client
         this.client = client;
 
+        // définit la disposition du panneau grille
         this.setLayout(new GridLayout(2, 2));
 
-        // Input for amount
+        // Ajoute un Jlabel  et un champ de texte pour écrire le montant
         this.add(new JLabel("Montant : "));
         txtMontant = new JTextField();
         this.add(txtMontant);
 
-        // Validation button
+        // Crée et définit la commande d'action le bouton Valider
         btnValider = new JButton("Valider");
         btnValider.setActionCommand("VALIDER_DEPOT");
         this.add(new JLabel()); // Spacer
         this.add(btnValider);
 
-        // Action listener for the button
+        // Ajoute un écouteur d'action au bouton Valider
         btnValider.addActionListener(e -> validerDepot());
     }
 
+    // Vérifie si le montant saisie
     private void validerDepot() {
-        // Fetch the entered amount
+
+        // Récupère le montant saisi dans le champ de texte
         String montant = txtMontant.getText();
 
-        // Validate input
+        // le montant n'est pas vide
         if (montant.isEmpty() ) {
+
+            //Affiche un message d'erreur si le montant est vide
             JOptionPane.showMessageDialog(this, "Veuillez entrer un montant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Send command to the server
+        // Envoie la commande de dépôt avec le montant au serveur
         client.envoyer("DEPOT " + montant);
 
-        // Clear the input field after sending
+        // Réinitilaise le champ de texte après l'envoi
         txtMontant.setText("");
         JOptionPane.showMessageDialog(this, "Depot envoyé avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
     }

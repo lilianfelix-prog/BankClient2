@@ -14,15 +14,21 @@ import java.awt.event.ActionListener;
  * @version 1.0
  * @since 2024-11-01
  */
+// classe qui gère la connexion du serveur
 public class EcouteurMenuPrincipal implements ActionListener {
     private Client client;
     private JFrame fenetre;
 
+
+    //Initialise l'objet client qui gère la connexion et la communication
+    // et la fenetre principale de la fenêtre
     public EcouteurMenuPrincipal(Client client, JFrame fenetre) {
         this.client = client;
         this.fenetre = fenetre;
     }
 
+    // Gère les événements des actions Connecter, déconnecter,
+    // configurer IP adresse, port du serveur et la fermeture de l'application
     @Override
     public void actionPerformed(ActionEvent evt) {
         Object source = evt.getSource();

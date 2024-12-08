@@ -37,10 +37,11 @@ public class PanneauPrincipal  extends JPanel {
     private PanneauFacture panneauFacture;
 
 
-
+    // Initialise les composants
     public PanneauPrincipal(Client client) {
         this.client = client;
 
+        // Initialise les panneaux
         panneauConnexion = new PanneauConnexion();
         panneauConnexion.setEcouteur(new EcouteurConnexion(client,panneauConnexion));
 
@@ -48,12 +49,13 @@ public class PanneauPrincipal  extends JPanel {
         panneauOperationsCompte.setEcouteur(new EcouteurOperationsCompte(client, this));
         //panneauOperationsCompte.setSolde();
 
-
+        // Initialise les panneaux d'opérations spécifiques Depot, retrait, transfert et facture
         panneauDepot = new PanneauDepot(client);
         panneauRetrait = new PanneauRetrait(client);
         panneauTransfer = new PanneauTransfer(client);
         panneauFacture = new PanneauFacture(client);
 
+        // Panneau principal du compte client
         panneauCompteClient = new JPanel();
 
         panneauCompteClient.setLayout(new BorderLayout());
@@ -62,11 +64,13 @@ public class PanneauPrincipal  extends JPanel {
 
         numerosComptes = new DefaultListModel<>();
 
+        // Initialise le modèle de lsite pour les numéros de comptes
         jlNumerosComptes = new JList<>(numerosComptes);
         jlNumerosComptes.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
         jlNumerosComptes.setBorder(BorderFactory.createTitledBorder("Comptes bancaires"));
         jlNumerosComptes.setPreferredSize(new Dimension(250,500));
 
+        // Affiche les formulaires d'opération spécifiques selon
         panneauDetails = new JPanel();
         cardLayout = new CardLayout();
         panneauDetails.setLayout(cardLayout);
@@ -76,6 +80,8 @@ public class PanneauPrincipal  extends JPanel {
         panneauDetails.add(panneauTransfer, "TRANSFER");
         panneauDetails.add(panneauFacture, "FACTURE");
 
+
+        // Dont know what is this
         panneauCompteClient.add(panneauOperationsCompte, BorderLayout.NORTH);
         panneauCompteClient.add(jlNumerosComptes, BorderLayout.WEST);
         panneauCompteClient.add(panneauDetails, BorderLayout.CENTER);
@@ -98,20 +104,25 @@ public class PanneauPrincipal  extends JPanel {
         this.numerosComptes.clear();
         this.bureau.removeAll();
     }
+    // affiche différentes opérations en utilisant un CardLayout
     public void afficherPanneauOperation(String nomPanneau) {
         cardLayout.show(panneauDetails, nomPanneau);
     }
+    // Cache le panneau de connexion et facce le contenu
     public void cacherPanneauConnexion() {
         panneauConnexion.effacer();
         panneauConnexion.setVisible(false);
     }
+    // Affiche le panneau de connexion
     public void montrerPanneauConnexion() {
         panneauConnexion.setVisible(true);
     }
+    // Cache le panneau du compte-client et vide la liste de comptes
     public void cacherPanneauCompteClient() {
         panneauCompteClient.setVisible(false);
         this.numerosComptes.clear();
     }
+    // Affiche le panneau du compte client
     public void montrerPanneauCompteClient() {
         panneauCompteClient.setVisible(true);
     }
@@ -145,6 +156,7 @@ public class PanneauPrincipal  extends JPanel {
         );
     }
 
+    // Mets à jour et affiche le solde du compte sur le panneau d'opération
     public void setSolde(String solde){
         panneauOperationsCompte.getLblSolde().setText("Solde: " + solde);
     }

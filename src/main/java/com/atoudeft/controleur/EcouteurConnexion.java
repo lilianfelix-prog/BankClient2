@@ -8,15 +8,19 @@ import javax.xml.transform.Source;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class EcouteurConnexion implements ActionListener {
     private Client client;
     private PanneauConnexion panneauConnexion;
 
+    // Initialise un écouteur de connexion associé à Client et PanneauConexxion
     public EcouteurConnexion(Client client, PanneauConnexion panneauConnexion) {
         this.client = client;
         this.panneauConnexion = panneauConnexion;
     }
 
+    // Gère les événements dur les clic de bouton si c'est un nouveau
+    // compte ou une connexion
     @Override
     public void actionPerformed(ActionEvent evt) {
         Object source = evt.getSource();
